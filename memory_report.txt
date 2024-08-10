@@ -1,0 +1,24 @@
+Memory Report - 2024-08-08 00:15:05.425018
+
+Initial Memory Usage:
+RSS: 15048704 bytes
+VMS: 8224768 bytes
+Percent: 0.23700351183211327%
+
+Final Memory Usage:
+RSS: 15142912 bytes
+VMS: 8294400 bytes
+Percent: 0.23848720284249397%
+
+[ Top 10 Memory Usage Differences ]
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\_pswindows.py:727: size=992 B (+992 B), count=3 (+3), average=331 B
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\_pswindows.py:889: size=592 B (+592 B), count=1 (+1), average=592 B
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\__init__.py:350: size=576 B (+576 B), count=1 (+1), average=576 B
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\_pswindows.py:886: size=520 B (+520 B), count=1 (+1), average=520 B
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\__init__.py:1151: size=512 B (+512 B), count=1 (+1), average=512 B
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\__init__.py:2008: size=504 B (+504 B), count=1 (+1), average=504 B
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\__init__.py:1107: size=496 B (+496 B), count=1 (+1), average=496 B
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\_pswindows.py:247: size=480 B (+480 B), count=1 (+1), average=480 B
+D:\python_test\memory_leal.py:13: size=472 B (+472 B), count=1 (+1), average=472 B
+C:\Users\Somesh\AppData\Local\Programs\Python\Python310\lib\site-packages\psutil\_pswindows.py:246: size=472 B (+472 B), count=1 (+1), average=472 B
+

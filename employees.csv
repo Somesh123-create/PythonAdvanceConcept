@@ -1,0 +1,11 @@
+name,age,title,department,paygrade
+Alice,30,Software Engineer,Engineering,5
+Bob,45,Project Manager,Management,7
+Charlie,25,Data Analyst,Data Science,4
+Diana,35,Product Manager,Product,6
+Eve,28,UX Designer,Design,5
+Frank,50,CTO,Executive,9
+Grace,40,HR Manager,Human Resources,6
+Henry,32,DevOps Engineer,Engineering,5
+Isabel,29,Marketing Specialist,Marketing,4
+John,27,Sales Representative,Sales,4
