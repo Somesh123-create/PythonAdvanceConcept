@@ -19,9 +19,22 @@ class ManageFile:
 
 
 
-with ManageFile('new_text.txt') as file:
-    file.write("Hello Somesh")
+# with ManageFile('new_text.txt') as file:
+#     file.write("Hello Somesh")
 
 
 #implemente in function
 from contextlib import contextmanager
+
+@contextmanager
+def open_manage_file(filename):
+    f = open(filename, 'w')
+    try:
+        yield f
+    finally:
+        f.close()
+
+
+with open_manage_file("new_text.txt") as file:
+    file.write("Hello World..")
+    file.write("Hello Somesh..")
