@@ -52,7 +52,45 @@
         my_tuple = (1, 2, 3)
         # my_tuple[0] = 10  # This will raise a TypeError
 
-3. **Can you explain the difference between deep copy and shallow copy in Python?**
+3. **How does Python handle memory management?**
+
+   **Answer:** Python handles memory management through a private heap containing all Python objects and data structures. The Python memory manager takes care of allocating and deallocating memory as needed. Python uses reference counting as the primary mechanism for memory management, supplemented by a cycle-detecting garbage collector to detect and clean up cyclic references.
+
+   **Memory Management in Python**
+
+    **Reference Counting:** Python keeps track of the number of references to each object in memory. When an object's reference count drops to zero, the memory occupied by the object is deallocated.
+
+    **Garbage Collection:** Python's garbage collector detects and cleans up cyclic references (where objects reference each other, creating a cycle that reference counting alone cannot resolve).
+
+    **Reference Counting in Python**
+
+    **Initial Reference:** When you create an object a = [], the variable a is the first reference to the newly created list object. This gives the list a reference count of 1.
+
+    **Temporary Reference:** When you call sys.getrefcount(a), Python passes a to the function. This creates a temporary reference to the list object while sys.getrefcount is being executed. This temporary reference is counted by the garbage collector, increasing the reference count by 1.
+
+    **Example:** Reference Counting
+
+    Let's create a simple example to demonstrate reference counting:
+
+        import sys
+
+        # Create an object and print its reference count
+        a = []
+        print("Reference count of a:", sys.getrefcount(a))  # Output: 2
+
+        # Create another reference to the same object
+        b = a
+        print("Reference count of a:", sys.getrefcount(a))  # Output: 3
+
+        # Remove a reference
+        del b
+        print("Reference count of a:", sys.getrefcount(a))  # Output: 2
+
+        # Remove the last reference
+        del a
+        # At this point, the reference count drops to zero and the object is deallocated
+
+4. **Can you explain the difference between deep copy and shallow copy in Python?**
     - Shallow copy creates a new object, but inserts references into it to the objects found in the original.
 
     - Deep copy creates a new object and recursively copies all objects found in the original, creating entirely independent objects.
@@ -91,7 +129,7 @@
         print("Shallow copied list:", shallow_copied_list)    # [1, ['X', 3], 4]
         print("Deep copied list:", deep_copied_list)          # [1, [2, 3], 4]
 
-4. **what is difference between set and frozenset?**
+5. **what is difference between set and frozenset?**
 
     In Python, set and frozenset are both used to store collections of unique elements, but they differ in mutability and behavior. Here's a comparison between set and frozenset:
 
@@ -140,6 +178,11 @@
 
     In summary, the choice between set and frozenset depends on whether you need mutability or immutability for your collection of unique elements in Python.
 
+6. **In Python, what is the usage of local variables and global variables?**
+   - **Global Variables:** When variables are considered either outside a function or in global space, it is known as global variables. The fact, it is possible to access these variables from any function in the program.
+
+   - **Local Variables:** When variables are considered inside a function, it is known as local variables. The fact, this variable is presented in the local space rather than in the global space.
+
 # String
 
 1. **What are some common string methods in Python?**
@@ -167,27 +210,70 @@
         my_list.pop(1)               # Remove element by index
         del my_list[0]               # Delete element by index
 
-3. **What is a list comprehension? Provide an example.**
+3. **How do you slice a list in Python?**
+
+    **Answer:** Use the slice notation start:stop:step.
+
+        my_list = [1, 2, 3, 4, 5]
+        print(my_list[1:4])    # [2, 3, 4]
+        print(my_list[:3])     # [1, 2, 3]
+        print(my_list[2:])     # [3, 4, 5]
+        print(my_list[::2])    # [1, 3, 5]
+
+4. **How do you concatenate and repeat lists in Python?**
+
+    **Answer:** Use the + operator to concatenate and the * operator to repeat.
+
+        list1 = [1, 2]
+        list2 = [3, 4]
+        concatenated_list = list1 + list2  # [1, 2, 3, 4]
+        repeated_list = list1 * 3          # [1, 2, 1, 2, 1, 2]
+
+5. **What is a list comprehension? Provide an example.**
 
     **Answer:** A list comprehension is a concise way to create lists using a single line of code.
 
         squares = [x*x for x in range(5)]
         print(squares)  # [0, 1, 4, 9, 16]
 
-4. **How do you find the index of an element in a list?**
+6. **How do you sort a list in Python?**
+
+    **Answer:** Use the sort() method to sort in place or the sorted() function to return a new sorted list.
+
+        my_list = [3, 1, 4, 2]
+        my_list.sort()               # Sort in place
+        sorted_list = sorted(my_list)  # Return a new sorted list
+
+7. **How do you find the index of an element in a list?**
 
     **Answer:** Use the index() method.
 
         my_list = [1, 2, 3, 4, 5]
         print(my_list.index(3))  # 2
 
-5. **How do you remove duplicates from a list?**
+8. **How do you remove duplicates from a list?**
 
     **Answer:** Convert the list to a set and then back to a list.
 
         my_list = [1, 2, 2, 3, 4, 4, 5]
         my_list = list(set(my_list))
         print(my_list)  # [1, 2, 3, 4, 5]
+
+9. **How do you find the maximum and minimum values in a list?**
+
+    **Answer:** Use the max() and min() functions.
+
+        my_list = [1, 2, 3, 4, 5]
+        print(max(my_list))  # 5
+        print(min(my_list))  # 1
+
+10. **How do you reverse a list in Python?**
+
+    **Answer:** Use the reverse() method or slicing.
+
+        my_list = [1, 2, 3, 4, 5]
+        my_list.reverse()      # In place reversal
+        reversed_list = my_list[::-1]  # Slicing reversal
 
 # Dict
 
@@ -288,22 +374,6 @@
         # Attempting to access private attribute (will raise AttributeError):
         # print(f"Year: {my_car.__year}")
 
-3. **Explain the concept of encapsulation in Python. How do you achieve it?**
-
-    **Answer:** Encapsulation is the bundling of data and methods that operate on that data within a single unit, or class, and restricting access to some of the object's components.
-
-        class EncapsulatedObject:
-            def __init__(self, value):
-                self._protected = value
-                self.__private = value
-
-            def get_private(self):
-                return self.__private
-
-        obj = EncapsulatedObject(10)
-        print(obj._protected)  # Accessing protected variable
-        print(obj.get_private())  # Accessing private variable via getter
-
 3. **Question: Explain Data Abstraction in Python.**
 
    **Answer:** Discuss how Data Abstraction involves hiding complex implementation details and exposing only the essential features of an object.
@@ -343,7 +413,37 @@
         print("Area of Circle:", circle.area())
         print("Perimeter of Circle:", circle.perimeter())
 
-4. **How does method overriding work in Python?**
+4. **What is inheritance in Python?**
+
+    **Answer**: Inheritance is a mechanism in Python that allows one class (subclass) to inherit the properties and methods of another class (superclass). It promotes code reuse and supports hierarchical classification.
+
+    **Example:**
+
+        class Animal:
+            def __init__(self, name):
+                self.name = name
+
+            def sound(self):
+                pass
+
+        class Dog(Animal):  # Dog inherits from Animal
+            def sound(self):
+                return "Woof!"
+
+        class Cat(Animal):  # Cat inherits from Animal
+            def sound(self):
+                return "Meow!"
+
+        # Usage
+        dog = Dog("Buddy")
+        print(dog.name)    # Output: Buddy
+        print(dog.sound()) # Output: Woof!
+
+        cat = Cat("Whiskers")
+        print(cat.name)    # Output: Whiskers
+        print(cat.sound()) # Output: Meow!
+
+5. **How does method overriding work in Python?**
 
     **Answer:** Method overriding occurs when a subclass provides a specific implementation of a method that is already defined in its superclass. It allows a subclass to change the behavior of an inherited method.
 
@@ -368,7 +468,7 @@
         cat = Cat()
         print(cat.sound())  # Output: Meow!
 
-5. **What are instance variables and class variables?**
+6. **What are instance variables and class variables?**
 
     **Answer:**
     - Instance variables: These are variables defined inside methods and are bound to an instance of the class. Each instance of the class (object) has its own copy of instance variables.
@@ -393,7 +493,7 @@
         print(car2.brand)       # Output: Honda
         print(Car.car_count)    # Output: 2 (class variable)
 
-6. **What is the super() function used for in Python?**
+7. **What is the super() function used for in Python?**
 
     **Answer:** The super() function is used to call methods and constructors from the parent class (superclass). It is typically used in method overriding to invoke the superclass's method before or after the subclass's specific implementation.
 
@@ -413,15 +513,39 @@
         print(dog.species)  # Output: Canine
         print(dog.name)     # Output: Buddy
 
-7. **What is the purpose of the self parameter in Python class methods?**
+8. **Explain the concept of multiple inheritance in Python.**
+
+    **Answer:** Multiple inheritance in Python refers to the capability of a class to inherit attributes and methods from more than one parent class. This allows for complex class hierarchies but can introduce ambiguity if methods or attributes with the same name exist in multiple parent classes.
+
+    **Example:**
+
+        class A:
+            def method_A(self):
+                return "Method A from class A"
+
+        class B:
+            def method_B(self):
+                return "Method B from class B"
+
+        class C(A, B):  # Multiple inheritance
+            def method_C(self):
+                return "Method C from class C"
+
+        # Usage
+        obj = C()
+        print(obj.method_A())  # Output: Method A from class A
+        print(obj.method_B())  # Output: Method B from class B
+        print(obj.method_C())  # Output: Method C from class C
+
+9. **What is the purpose of the self parameter in Python class methods?**
 
     **Answer:** The self parameter refers to the instance of the class and is used to access the attributes and methods of the class in Python. It is the first parameter of any instance method.
 
-8.  **Why do we use __init__() in Python classes?**
+10. **Why do we use __init__() in Python classes?**
 
     **Answer:** The __init__() method is a special method in Python classes that initializes an instance of the class. It is called when an instance of the class is created and is used to set the initial state of the object.
 
-9.  **What are *args and **kwargs in Python, and how are they used?**
+11. **What are *args and **kwargs in Python, and how are they used?**
 
     **Answer:** *args and **kwargs are used in function definitions to pass a variable number of arguments to a function. *args is used to pass a variable number of non-keyword arguments, while **kwargs is used to pass a variable number of keyword arguments.
 
@@ -434,7 +558,7 @@
         # (1, 2, 3)
         # {'a': 4, 'b': 5}
 
-10. **Can you provide an example of a class using __init__() and self?**
+12. **Can you provide an example of a class using __init__() and self?**
 
         class Person:
             def __init__(self, name, age):
@@ -448,7 +572,21 @@
         person.display()
         # Output: Name: Alice, Age: 30
 
-1.  **How do you use *args and **kwargs in class methods?**
+13. **Can you provide an example of a class using __init__() and self?**
+
+        class Person:
+            def __init__(self, name, age):
+                self.name = name
+                self.age = age
+
+            def display(self):
+                print(f"Name: {self.name}, Age: {self.age}")
+
+        person = Person("Alice", 30)
+        person.display()
+        # Output: Name: Alice, Age: 30
+
+14. **How do you use *args and **kwargs in class methods?**
 
         class Example:
             def __init__(self, *args, **kwargs):
@@ -465,11 +603,11 @@
         # args: (1, 2, 3)
         # kwargs: {'a': 4, 'b': 5}
 
-2.  **What happens if you omit the self parameter in a class method?**
+15. **What happens if you omit the self parameter in a class method?**
 
     - **Answer:** Omitting the self parameter in a class method will result in a TypeError when the method is called because Python will not know how to bind the method to an instance of the class.
 
-3.  **How do you create and use a class method and a static method in Python?**
+16. **How do you create and use a class method and a static method in Python?**
 
     **Answer:** A class method is a method that is bound to the class and not the instance of the class. It takes cls as the first parameter. A static method does not take self or cls as the first parameter and can be called on the class itself.
 
@@ -485,7 +623,22 @@
         MyClass.class_method()  # This is a class method.
         MyClass.static_method()  # This is a static method.
 
-4.  **What is the difference between composition and inheritance? When would you use one over the other?**
+17. **What is method overloading and method overriding? How do they differ in Python?**
+
+    **Answer:** Python does not support method overloading in the traditional sense (like Java). Instead, we can achieve similar behavior using default arguments. Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
+
+        class Parent:
+            def show(self):
+                print("Parent method")
+
+        class Child(Parent):
+            def show(self):
+                print("Child method")
+
+        c = Child()
+        c.show()  # Child method
+
+18. **What is the difference between composition and inheritance? When would you use one over the other?**
 
     **Answer:** Inheritance is a "is-a" relationship where a class inherits attributes and methods from a parent class. Composition is a "has-a" relationship where a class is composed of one or more objects from other classes.
 
@@ -517,11 +670,27 @@
         car = Car()
         car.start()  # Engine started
 
-6.  **Explain the concept of polymorphism in OOP. How is it implemented in Python?**
+19. **Explain the concept of encapsulation in Python. How do you achieve it?**
+
+    **Answer:** Encapsulation is the bundling of data and methods that operate on that data within a single unit, or class, and restricting access to some of the object's components.
+
+        class EncapsulatedObject:
+            def __init__(self, value):
+                self._protected = value
+                self.__private = value
+
+            def get_private(self):
+                return self.__private
+
+        obj = EncapsulatedObject(10)
+        print(obj._protected)  # Accessing protected variable
+        print(obj.get_private())  # Accessing private variable via getter
+
+20. **Explain the concept of polymorphism in OOP. How is it implemented in Python?**
 
     **Answer:** Polymorphism allows objects of different classes to be treated as objects of a common superclass. It is implemented in Python using method overriding and interfaces.
 
-7.  **Explain the concept of polymorphism in OOP. How is it implemented in Python?**
+21. **Explain the concept of polymorphism in OOP. How is it implemented in Python?**
 
     **Answer:** Polymorphism allows objects of different classes to be treated as objects of a common superclass. It is implemented in Python using method overriding and interfaces.
 
@@ -889,7 +1058,19 @@
 
 ## String Operations Coding Quiz Questions
 
-1. **Remove Duplicates from String:**
+1. **Reverse Words in a String:**
+   - Write a function reverse_words(s) that takes a string s as input and returns a string where each word in s is reversed. Words are separated by spaces.
+
+            def reverse_words(s):
+                words = s.split()
+                reversed_words = [word[::-1] for word in words]
+                return ' '.join(reversed_words)
+
+            # Test
+            s = "Hello World"
+            print(reverse_words(s))  # Output: "olleH dlroW"
+
+2. **Remove Duplicates from String:**
 
     - Write a function remove_duplicates(s) that takes a string s as input and returns a string where all duplicate characters are removed, while maintaining the original order of characters.
 
@@ -907,6 +1088,51 @@
             print(remove_duplicates(s))  # Output: "helo"
 
 ## Dictionary and List operations in Python,
+
+0. Datetime formate questions.
+
+    - **input:**
+      - data_str = '[{"date":"23-1-2024", "count":2}, {"date":"23-1-2023", "count":5}, {"date":"25-1-2024", "count":2}, {"date":"23-1-2024", "count":3}, {"date":"26-1-2024", "count":2}, {"date":"26-1-2024", "count":2}, {"date":"27-1-2024", "count":5}]'
+
+    - **Output:**
+      - [{'date': '23-Jan-2023', 'count': 5}, {'date': '23-Jan-2024', 'count': 5}, {'date': '25-Jan-2024', 'count': 2}, {'date': '26-Jan-2024', 'count': 4}, {'date': '27-Jan-2024', 'count': 5}]
+
+            import json
+            from datetime import datetime
+
+            # Step 1: Parse the JSON string
+            data_str = '[{"date":"23-1-2024", "count":2}, {"date":"23-1-2023", "count":5}, {"date":"25-1-2024", "count":2}, {"date":"23-1-2024", "count":3}, {"date":"26-1-2024", "count":2}, {"date":"26-1-2024", "count":2}, {"date":"27-1-2024", "count":5}]'
+            data_list = json.loads(data_str)
+
+            # Step 2: Create an empty dictionary to store aggregated counts
+            aggregated_counts = {}
+
+            # Step 3: Iterate through the list and update the dictionary
+            for entry in data_list:
+                date_str = entry["date"]
+                count = entry["count"]
+
+                # Convert date string to datetime object
+                date_obj = datetime.strptime(date_str, '%d-%m-%Y')
+
+                # Format date as 'DD-Mon-YYYY'
+                formatted_date = date_obj.strftime('%d-%b-%Y')
+
+                # Update aggregated counts dictionary
+                if formatted_date in aggregated_counts:
+                    aggregated_counts[formatted_date] += count
+                else:
+                    aggregated_counts[formatted_date] = count
+
+            # Step 4: Convert the dictionary back into a list of dictionaries and sort by date
+            result = [{"date": date, "count": count} for date, count in aggregated_counts.items()]
+            result_sorted = sorted(result, key=lambda x: datetime.strptime(x['date'], '%d-%b-%Y'))
+
+            # Print the sorted result
+            print(result_sorted)
+
+
+
 
 1. **Merge Two Dictionaries**
     - Write a Python function to merge two dictionaries. If a key exists in both dictionaries, sum their values.
