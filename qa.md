@@ -1285,6 +1285,18 @@
             lst = [1, 2, 2, 3, 4, 4, 5]
             print(remove_duplicates(lst))  # Output: [1, 2, 3, 4, 5]
 
+- Find the maximum product of two intiger in a list
+
+          def max_product(nums):
+              if len(nums) < 2:
+                  raise("The list must contain at least two integer")
+              nums.sort()
+              return max(nums[0] * nums[1), nums[-1] * nums[-2])
+
+          nums = [1, 3, -10, 4, -3]
+          max_prod = max_product(nums)
+          print(max_prod)
+
 8. **Nested Loop to Create Multiplication Table**
       - Write a function to create a multiplication table for numbers 1 to n using nested for loops.
 
