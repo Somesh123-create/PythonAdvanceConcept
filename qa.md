@@ -355,12 +355,12 @@
    **Answer:** Explain how Encapsulation is achieved in Python using classes and access modifiers like private and protected attributes.
 
    **Example Answer:**
-    Encapsulation in Python involves bundling data (attributes) and methods (functions) that operate on the data into a single unit (a class). Access to the attributes can be controlled using access modifiers such as private (denoted by a leading underscore _) and protected (denoted by a double leading underscore __). Encapsulation helps in hiding the internal state of objects and restricting direct access to certain components.
+    Encapsulation in Python involves bundling data (attributes) and methods (functions) that operate on the data into a single unit (a class). Access to the attributes can be controlled using access modifiers such as private (denoted by a doble leading underscore __) and protected (denoted by a single leading underscore _). Encapsulation helps in hiding the internal state of objects and restricting direct access to certain components.
 
         class Car:
             def __init__(self, make, model, year):
                 self._make = make         # Private attribute
-                self._model = model       # Private attribute
+                self._model = model       # Protected attribute
                 self.__year = year        # Private attribute
 
             def display_info(self):
