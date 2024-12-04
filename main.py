@@ -259,10 +259,25 @@
 # Question 17 Write a function to group a list of dictionaries by a specific key.
 
 def group_by_key(dicts_list, key):
-    pass
+    grouped = {}
+    
+    # Iterate through each dictionary in the list
+    for dictionary in dicts_list:
+        # Get the value of the specified key
+        key_value = dictionary.get(key)
+        
+        # If the key value is not in the grouped dictionary, create a new list for it
+        if key_value not in grouped:
+            grouped[key_value] = []
+        
+        # Add the dictionary to the list of the corresponding key value
+        grouped[key_value].append(dictionary)
+    
+    return grouped
 
 
+# Test the function with the provided input
 dicts_list = [{'name': 'John', 'city': 'New York'}, {'name': 'Jane', 'city': 'Los Angeles'}, {'name': 'Doe', 'city': 'New York'}]
 result = group_by_key(dicts_list, 'city')
 print(result)
-# Output: {'New York': [{'name': 'John', 'city': 'New York'}, {'name': 'Doe', 'city': 'New York'}], 'Los Angeles': [{'name': 'Jane', 'city': 'Los Angeles'}]}
+
