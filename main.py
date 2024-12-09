@@ -258,26 +258,81 @@
 
 # Question 17 Write a function to group a list of dictionaries by a specific key.
 
-def group_by_key(dicts_list, key):
-    grouped = {}
-    
-    # Iterate through each dictionary in the list
-    for dictionary in dicts_list:
-        # Get the value of the specified key
-        key_value = dictionary.get(key)
-        
-        # If the key value is not in the grouped dictionary, create a new list for it
-        if key_value not in grouped:
-            grouped[key_value] = []
-        
-        # Add the dictionary to the list of the corresponding key value
-        grouped[key_value].append(dictionary)
-    
-    return grouped
+# def group_by_key(dicts_list, key):
+#     grouped = {}
+#
+#     # Iterate through each dictionary in the list
+#     for dictionary in dicts_list:
+#         # Get the value of the specified key
+#         key_value = dictionary.get(key)
+#
+#         # If the key value is not in the grouped dictionary, create a new list for it
+#         if key_value not in grouped:
+#             grouped[key_value] = []
+#
+#         # Add the dictionary to the list of the corresponding key value
+#         grouped[key_value].append(dictionary)
+#
+#     return grouped
 
 
 # Test the function with the provided input
-dicts_list = [{'name': 'John', 'city': 'New York'}, {'name': 'Jane', 'city': 'Los Angeles'}, {'name': 'Doe', 'city': 'New York'}]
-result = group_by_key(dicts_list, 'city')
-print(result)
+# dicts_list = [{'name': 'John', 'city': 'New York'}, {'name': 'Jane', 'city': 'Los Angeles'}, {'name': 'Doe', 'city': 'New York'}]
+# result = group_by_key(dicts_list, 'city')
+# print(result)
 
+
+# Question 18 Python function to find the longest common substring between two strings
+
+# def longest_common_substring(str1, str2):
+#     longest = ""
+#     for i in range(len(str1)):
+#         for j in range(i + 1, len(str1) + 1):
+#             substring = str1[i:j]
+#             if substring in str2 and len(substring) > len(longest):
+#                  longest = substring
+#     return longest
+#
+# # Example usage
+# str1 = "abcdxyz"
+# str2 = "xyzabcd"
+# result = longest_common_substring(str1, str2)
+# print(f"Longest common substring: '{result}'")
+
+
+# 
+# def longest_common_substring(str1, str2):
+#     log_com_str = ""
+#     for i in range(len(str1)):
+#         for j in  range(len(str1)+1):
+#             substring = str1[i:j]
+#             if substring in str2:
+#                 if len(substring) > len(log_com_str):
+#                     log_com_str = substring
+#     return log_com_str
+#
+#
+#
+# str1 = "abcdvwxyz"
+# str2 = "vwxyzabcd"
+# result = longest_common_substring(str1, str2)
+# print(f"Longest common substring: '{result}'")
+
+
+
+# Question 19 Count substring occurance in given string
+
+# def count_substring(string, substring):
+#     count = 0
+#     for i in range(len(string) - len(substring) + 1):
+#         print(string[i:i + len(substring)])
+#         if string[i:i + len(substring)] == substring:
+#             count += 1
+#     return count
+#
+#
+#
+# string = "ABCDCDC"
+# substring = "CDC"
+# result = count_substring(string, substring)
+# print(f"The substring occurs {result} times in the main string.")
